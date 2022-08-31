@@ -37,6 +37,7 @@ public class Photos extends AppCompatActivity {
             }
         });
     }
+
     public void requestStoragePermission(){
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
             new AlertDialog.Builder(Photos.this).setTitle("Permission needed").setMessage("This permission is needed").setPositiveButton("click", new DialogInterface.OnClickListener() {
@@ -67,4 +68,3 @@ public class Photos extends AppCompatActivity {
         }
     }
 }
-//Gadda

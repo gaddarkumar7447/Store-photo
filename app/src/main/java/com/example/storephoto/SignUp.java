@@ -65,6 +65,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+
     public void sendEmailVerification(){
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser != null){
