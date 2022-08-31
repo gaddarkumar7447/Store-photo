@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser!=null){
             finish();
-            startActivity(new Intent(MainActivity.this, Photos.class));
+            startActivity(new Intent(MainActivity.this, UploadImage.class));
         }
         msignup.setOnClickListener(new View.OnClickListener() {
             @Override
