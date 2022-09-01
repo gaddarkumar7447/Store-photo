@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+
         mloginemail = findViewById(R.id.loginemail);
         mloginpassword = findViewById(R.id.loginpassword);
         mlogin = findViewById(R.id.login);
@@ -36,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbar);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
         if (firebaseUser!=null){
             finish();
             startActivity(new Intent(MainActivity.this, UploadImage.class));
         }
+
         msignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,12 +75,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void checkMailVerification(){
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser.isEmailVerified() == true){
             Toast.makeText(this, "login", Toast.LENGTH_SHORT).show();
             finish();
-            startActivity(new Intent(MainActivity.this, Photos.class));
+            startActivity(new Intent(MainActivity.this, UploadImage.class));
         }
         else {
             progressBar.setVisibility(View.INVISIBLE);
