@@ -83,7 +83,7 @@ public class UploadImage extends AppCompatActivity {
 
 
     private void uploadToFirebase(Uri uri){
-        StorageReference fileRef = reference.child(System.currentTimeMillis()+"."+getFileExtension(uri));
+        StorageReference fileRef = reference.child(System.currentTimeMillis()+"." +getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -94,7 +94,9 @@ public class UploadImage extends AppCompatActivity {
                         String modelId = root.push().getKey();
                         root.child(modelId).setValue(model);
                         Log.d("tag", "uploading image");
+                        progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(UploadImage.this, "Upload successfully", Toast.LENGTH_SHORT).show();
+                        imageView.setImageResource(R.drawable.ic_baseline_image_24);
                     }
                 });
             }
