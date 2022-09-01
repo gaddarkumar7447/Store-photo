@@ -23,26 +23,28 @@ public class ShowImage extends AppCompatActivity {
     RecyclerView mRecyclerView;
     ArrayList<Model> arrayList;
     Adapter myAdapter;
-    private  DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
+    private final DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_image);
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(ShowImage.this));
         arrayList = new ArrayList<>();
-        myAdapter = new Adapter(arrayList,this);
+        myAdapter = new Adapter(ShowImage.this, arrayList);
         mRecyclerView.setAdapter(myAdapter);
 
+
         root.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Model model = dataSnapshot.getValue(Model.class);
-                    arrayList.add(model);
+                   // Model model = dataSnapshot.getValue(Model.class);
+                    //arrayList.add(model);
                 }
-                myAdapter.notifyDataSetChanged();
+
             }
 
             @Override
