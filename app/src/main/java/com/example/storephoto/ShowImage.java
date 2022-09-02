@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.Display;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,21 +38,18 @@ public class ShowImage extends AppCompatActivity {
 
 
         root.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                   // Model model = dataSnapshot.getValue(Model.class);
-                    //arrayList.add(model);
+                    Model model = dataSnapshot.getValue(Model.class);
+                    arrayList.add(model);
                 }
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(ShowImage.this, "Not loaded image", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

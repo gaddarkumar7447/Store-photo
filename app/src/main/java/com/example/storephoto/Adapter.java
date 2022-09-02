@@ -14,8 +14,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
-    private ArrayList<Model> mList;
-    private Context context;
+    private final ArrayList<Model> mList;
+    private final Context context;
 
     public Adapter (Context context, ArrayList<Model> mList) {
         this.mList = mList;

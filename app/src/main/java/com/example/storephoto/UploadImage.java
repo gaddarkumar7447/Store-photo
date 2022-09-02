@@ -66,7 +66,7 @@ public class UploadImage extends AppCompatActivity {
                 if (imageUri != null){
                     uploadToFirebase(imageUri);
                 }else {
-                    Toast.makeText(UploadImage.this, "Select image from your device", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadImage.this, "select image from your device", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -103,7 +103,6 @@ public class UploadImage extends AppCompatActivity {
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                Toast.makeText(UploadImage.this, "Uploading..", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.VISIBLE);
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -118,7 +117,6 @@ public class UploadImage extends AppCompatActivity {
     private String getFileExtension(Uri mUri){
         ContentResolver resolver = getContentResolver();
         MimeTypeMap typeMap = MimeTypeMap.getSingleton();
-         return typeMap.getMimeTypeFromExtension(resolver.getType(mUri));
+        return typeMap.getExtensionFromMimeType(resolver.getType(mUri));
     }
-
 }
