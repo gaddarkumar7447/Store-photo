@@ -1,6 +1,7 @@
 package com.example.storephoto;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
         Glide.with(context).load(mList.get(position).getImageUrlM()).into(holder.imageView);
+
     }
 
     @Override

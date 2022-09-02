@@ -9,7 +9,9 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.Display;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +26,7 @@ public class ShowImage extends AppCompatActivity {
     RecyclerView mRecyclerView;
     ArrayList<Model> arrayList;
     Adapter myAdapter;
+    ProgressBar progressBar;
     private final DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +38,14 @@ public class ShowImage extends AppCompatActivity {
         arrayList = new ArrayList<>();
         myAdapter = new Adapter(ShowImage.this, arrayList);
         mRecyclerView.setAdapter(myAdapter);
-
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    progressBar.setVisibility(View.INVISIBLE);
                     Model model = dataSnapshot.getValue(Model.class);
                     arrayList.add(model);
                 }
@@ -51,5 +56,6 @@ public class ShowImage extends AppCompatActivity {
                 Toast.makeText(ShowImage.this, "Not loaded image", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
